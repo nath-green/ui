@@ -1,3 +1,3 @@
-import { Button } from "./lib";
+import { Button, Spinner } from "./lib";
 
-export { Button };
+export { Button, Spinner };
