@@ -1,5 +1,6 @@
 import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
+import commonjs from '@rollup/plugin-commonjs';
 import { uglify } from "rollup-plugin-uglify";
 import filesize from 'rollup-plugin-filesize';
 
@@ -13,16 +14,17 @@ export default {
     name: "bundle",
   },
   plugins: [
-    resolve({
-      mainFields: ["module", "main", "jsnext:main", "browser"],
-      extensions,
-    }),
     babel({
       babelHelpers: 'bundled',
       exclude: "node_modules/**",
     }),
+    resolve({
+      mainFields: ["module", "main", "jsnext:main", "browser"],
+      extensions,
+    }),
+    commonjs(),
     uglify(),
     filesize()
   ],
-  external: ['react', 'react-dom']
+  external: ['react', 'react-dom', 'classnames']
 };
