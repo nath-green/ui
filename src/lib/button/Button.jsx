@@ -10,10 +10,10 @@ export const Button = ({
   loading = false,
   ariaLabel = "",
   enableLoading = true,
+  containerClassName = "",
   spinnerClassName = "",
   loadingAlertText = "Loading",
-  loadingAriaLabel = "Loading",
-  containerClassName = "",
+  loadingAriaLabel = "Loading"
 }) => {
   const onClickHandler = (e) => {
     if (!loading && !disabled) {
