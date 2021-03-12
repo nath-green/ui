@@ -8,9 +8,29 @@ Components:
 
 ## Installation and prerequisites
 
+1. Install `@nath-green/ui`
+
 ```js
-yarn install @nath-green/ui
+yarn add @nath-green/ui
 ```
+
+2. Install `classnames`
+
+If you don't already have `classnames`, add it with 
+
+```js
+yarn add classnames
+```
+
+3. Update `tailwind.config.js` for purge `safelist`. Read [here](#user-content-tailwindclasses)
+
+### Package dependencies
+
+#### `classnames`
+
+`@nath-green/ui` uses [`classnames`](https://www.npmjs.com/package/classnames) as an external dependency under the hood. If you haven't already got it in your project, add it with `yarn add classnames`
+
+### Tailwind classes
 
 Some of the components use Tailwind classes under the hood so these need to be added to your project so they are not purged in production mode.
 
