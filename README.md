@@ -3,6 +3,7 @@
 A library of a11y focused (kinda) style-less UI components to be consumed with `TailwindCSS`.
 
 Components:
+
 - [Button](#user-content-button)
 - [Spinner](#user-content-spinner)
 
@@ -16,13 +17,13 @@ yarn add @nath-green/ui
 
 2. Install `classnames`
 
-If you don't already have `classnames`, add it with 
+If you don't already have `classnames`, add it with
 
 ```js
 yarn add classnames
 ```
 
-3. Update `tailwind.config.js` for purge `safelist`. Read [here](#user-content-tailwindclasses)
+3. Update `tailwind.config.js` for purge `safelist`. Read [here](#user-content-tailwind-classes)
 
 ### Package dependencies
 
@@ -64,20 +65,20 @@ Depending on what component you are importing, the `safelist` will need populati
 
 ### Props
 
-| Prop               | Type     | Default     | Description                                            |
-| ------------------ | -------- | ----------- | ------------------------------------------------------ |
-| type               | String   | `"button"`  | `<button>` `type`                                      |
-| children           | String   |             | Contents of the button                                 |
-| onClick            | Function |             | Function executed on click                             |
-| className          | String   |             | List of classes passed to `<button>`                   |
-| disabled           | Boolean  | `false`     | `disabled` prop added to `<button>`                    |
-| loading            | Boolean  | `false`     | `disabled` prop added to `<button>` with loading state |
-| ariaLabel          | String   |             | Aria label                                             |
-| enableLoading      | Boolean  | `true`      | Enables spinner ui when `loading`                      |
-| containerClassName | String   |             | List of classes passed to wrapping `<div>`             |
-| spinnerClassName   | String   |             | List of classes passed to `<Spinner>`                  |
-| loadingAriaLabel   | String   | `"Loading"` | Aria label when in loading state                       |
-| loadingAlertText   | String   | `"Loading"` | Text with role `alert`                                 |
+| Prop               | Type     | Default     | Description                                                                                                               |
+| ------------------ | -------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- |
+| type               | String   | `"button"`  | `<button>` `type`                                                                                                         |
+| children           | String   |             | Contents of the button                                                                                                    |
+| onClick            | Function |             | Function executed on click                                                                                                |
+| className          | String   |             | List of classes passed to `<button>`                                                                                      |
+| disabled           | Boolean  | `false`     | `disabled` prop added to `<button>`                                                                                       |
+| loading            | Boolean  | `false`     | Replaces content with loading spinner if `enableLoading` is `true`. Alert for screen readers with `loadingAlertText` prop |
+| ariaLabel          | String   |             | Aria label on `<button>`                                                                                                  |
+| enableLoading      | Boolean  | `true`      | Enables spinner ui when `loading`                                                                                         |
+| containerClassName | String   |             | List of classes passed to wrapping `<div>`                                                                                |
+| spinnerClassName   | String   |             | List of classes passed to `<Spinner>`                                                                                     |
+| loadingAriaLabel   | String   | `"Loading"` | Aria label when in loading state                                                                                          |
+| loadingAlertText   | String   | `"Loading"` | Text with role `alert`                                                                                                    |
 
 ### Example
 
@@ -89,17 +90,18 @@ import { Button } from "@nath-green/ui";
   className="bg-blue-800 hover:bg-blue-500 text-white rounded px-4 h-12"
   onClick={() => console.log("Hello")}
 >
-  Click me
+  Log to console
 </Button>
 
 // with loading state
 <Button
   className="bg-blue-800 hover:bg-blue-500 text-white rounded px-4 h-12"
   spinnerClassName="h-4 w-4 text-blue-300"
-  onClick={() => console.log("Hello")}
+  onClick={() => login()}
   loading={loading}
+  loadingAlertText="Logging in please wait"
 >
-  Click me
+  Login
 </Button>
 ```
 
@@ -120,5 +122,5 @@ import { Button } from "@nath-green/ui";
 ```jsx
 import { Spinner } from "@nath-green/ui";
 
-<Spinner className="text-blue-500" />
+<Spinner className="text-blue-500" />;
 ```
