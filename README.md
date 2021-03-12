@@ -77,6 +77,7 @@ import { Button } from "@nath-green/ui";
   className="bg-blue-800 hover:bg-blue-500 text-white rounded px-4 h-12"
   spinnerClassName="h-4 w-4 text-blue-300"
   onClick={() => console.log("Hello")}
+  loading={loading}
 >
   Click me
 </Button>
