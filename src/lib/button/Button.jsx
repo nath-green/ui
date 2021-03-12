@@ -1,19 +1,19 @@
 import React from "react";
-import classNames from "classnames";
 import { Spinner } from "../spinner";
 
 export const Button = ({
   type = "button",
   children,
-  onClick,
-  className,
-  disabled,
-  loading,
-  ariaLabel,
+  onClick = () => {},
+  className = "",
+  disabled = false,
+  loading = false,
+  ariaLabel = "",
   enableLoading = true,
-  spinnerClassName,
+  spinnerClassName = "",
   loadingAlertText = "Loading",
   loadingAriaLabel = "Loading",
+  containerClassName = "",
 }) => {
   const onClickHandler = (e) => {
     if (!loading && !disabled) {
@@ -24,7 +24,7 @@ export const Button = ({
   const loadingActive = loading && enableLoading;
 
   return (
-    <>
+    <div className={containerClassName}>
       {loadingActive && (
         <span role="alert" className="sr-only">
           {loadingAlertText}
@@ -46,6 +46,6 @@ export const Button = ({
           {!loadingActive && children}
         </>
       </button>
-    </>
+    </div>
   );
 };
