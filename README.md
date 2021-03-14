@@ -1,6 +1,6 @@
 # @nath-green/ui
 
-A library of a11y focused (kinda) style-less UI components to be consumed with `TailwindCSS`.
+A library of a11y focused (kinda) style-less React UI components to be consumed with `TailwindCSS`.
 
 Components:
 
@@ -15,21 +15,7 @@ Components:
 yarn add @nath-green/ui
 ```
 
-2. Install `classnames`
-
-If you don't already have `classnames`, add it with
-
-```js
-yarn add classnames
-```
-
-3. Update `tailwind.config.js` for purge `safelist`. Read [here](#user-content-tailwind-classes)
-
-### Package dependencies
-
-#### `classnames`
-
-`@nath-green/ui` uses [`classnames`](https://www.npmjs.com/package/classnames) as an external dependency under the hood. If you haven't already got it in your project, add it with `yarn add classnames`
+2. Update `tailwind.config.js` for purge `safelist`. Read [here](#user-content-tailwind-classes)
 
 ### Tailwind classes
 

@@ -26,5 +26,5 @@ export default {
     uglify(),
     filesize()
   ],
-  external: ['react', 'react-dom', 'classnames']
+  external: ['react', 'react-dom']
 };

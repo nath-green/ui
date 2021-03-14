@@ -1,9 +1,8 @@
 import React from 'react';
-import classNames from 'classnames';
 
-export const Spinner = ({ className }) => (
+export const Spinner = ({ className = '' }) => (
   <svg
-    className={classNames('animate-spin', className)}
+    className={`animate-spin ${className}`}
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
