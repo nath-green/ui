@@ -1,6 +1,6 @@
 # @nath-green/ui
 
-A library of a11y focused (kinda) style-less React UI components to be consumed with `TailwindCSS`.
+A library of accessibility focused unopinionated React UI components to be consumed with [Tailwind](https://tailwindcss.com/docs).
 
 Components:
 
@@ -15,7 +15,7 @@ Components:
 yarn add @nath-green/ui
 ```
 
-2. Ensure you have installed `Tailwind` in your project. See [installation notes](https://tailwindcss.com/docs).
+2. Ensure `Tailwind` is installed in your project. See [installation notes](https://tailwindcss.com/docs).
 
 ## Components
 
