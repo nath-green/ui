@@ -3,6 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from '@rollup/plugin-commonjs';
 import { uglify } from "rollup-plugin-uglify";
 import filesize from 'rollup-plugin-filesize';
+import tailwind from 'rollup-plugin-tailwind';
 
 const extensions = [".js", ".jsx"];
 
@@ -22,6 +23,7 @@ export default {
       mainFields: ["module", "main", "jsnext:main", "browser"],
       extensions,
     }),
+    tailwind(),
     commonjs(),
     uglify(),
     filesize()

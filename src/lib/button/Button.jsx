@@ -26,7 +26,7 @@ export const Button = ({
   return (
     <div className={containerClassName}>
       {loadingActive && (
-        <span role="alert" className="sr-only">
+        <span role="alert" style={tailwind('sr-only')}>
           {loadingAlertText}
         </span>
       )}

@@ -26,11 +26,16 @@
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "classnames": "^2.2.6",
+    "postcss-js": "^3.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "rollup": "^2.41.0",
     "rollup-plugin-filesize": "^9.1.1",
-    "rollup-plugin-uglify": "^6.0.4"
+    "rollup-plugin-uglify": "^6.0.4",
+    "tailwindcss": "^2.0.3",
+    "acorn": "^8.1.0",
+    "postcss": "^8.2.8",
+    "rollup-plugin-tailwind": "^1.0.0"
   },
   "peerDependencies": {
     "classnames": "^2.2.6",

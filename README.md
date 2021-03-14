@@ -15,41 +15,13 @@ Components:
 yarn add @nath-green/ui
 ```
 
-2. Update `tailwind.config.js` for purge `safelist`. Read [here](#user-content-tailwind-classes)
+2. Ensure you have installed `Tailwind` in your project. See [installation notes](https://tailwindcss.com/docs).
 
-### Tailwind classes
+## Components
 
-Some of the components use Tailwind classes under the hood so these need to be added to your project so they are not purged in production mode.
+### Button
 
-In your `tailwind.config.js` file, set the `safelist` option for `purge`. Read more [here](https://tailwindcss.com/docs/optimizing-for-production#purge-css-options).
-
-```js
-  purge: {
-    ...,
-    options: {
-      safelist: [/* list of classes here*/]
-    }
-  },
-```
-
-Depending on what component you are importing, the `safelist` will need populating with different classes. For example, if importing `Button` the safelist would be as follows:
-
-```js
-  purge: {
-    ...,
-    options: {
-      safelist: ['sr-only']
-    }
-  },
-```
-
-## Button
-
-### ⚠ `safelist` classes
-
-- `sr-only`
-
-### Props
+#### Props
 
 | Prop               | Type     | Default     | Description                                                                                                               |
 | ------------------ | -------- | ----------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -66,7 +38,7 @@ Depending on what component you are importing, the `safelist` will need populati
 | loadingAriaLabel   | String   | `"Loading"` | Aria label when in loading state                                                                                          |
 | loadingAlertText   | String   | `"Loading"` | Text with role `alert`                                                                                                    |
 
-### Example
+#### Example
 
 ```jsx
 import { Button } from "@nath-green/ui";
@@ -91,19 +63,15 @@ import { Button } from "@nath-green/ui";
 </Button>
 ```
 
-## Spinner
+### Spinner
 
-### ⚠ `safelist` classes
-
-- `animate-spin`
-
-### Props
+#### Props
 
 | Prop      | Type   | Default | Description                       |
 | --------- | ------ | ------- | --------------------------------- |
 | className | String |         | List of classes passed to `<svg>` |
 
-### Example
+#### Example
 
 ```jsx
 import { Spinner } from "@nath-green/ui";
