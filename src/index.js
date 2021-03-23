@@ -1,3 +1,3 @@
-import { Button, Spinner } from "./lib";
+import { Button, Spinner, Input, GlobalStyles, Pill } from "./lib";
 
-export { Button, Spinner };
+export { Button, Spinner, Input, GlobalStyles, Pill };

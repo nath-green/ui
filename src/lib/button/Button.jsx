@@ -1,51 +1,72 @@
-import React from "react";
+import React, { useContext, forwardRef } from "react";
+
+import { GlobalStyles } from "../context";
 import { Spinner } from "../spinner";
 
-export const Button = ({
-  type = "button",
-  children,
-  onClick = () => {},
-  className = "",
-  disabled = false,
-  loading = false,
-  ariaLabel = "",
-  enableLoading = true,
-  containerClassName = "",
-  spinnerClassName = "",
-  loadingAlertText = "Loading",
-  loadingAriaLabel = "Loading"
-}) => {
-  const onClickHandler = (e) => {
-    if (!loading && !disabled) {
-      onClick(e);
-    }
-  };
+import { selectClasses } from "./utils";
 
-  const loadingActive = loading && enableLoading;
+export const Button = forwardRef(
+  (
+    {
+      type = "button",
+      children,
+      onClick = () => {},
+      disabled = false,
+      loading = false,
+      ariaLabel = "",
+      enableLoading = true,
+      loadingAlertText = "Loading",
+      loadingAriaLabel = "Loading",
+      theme = "default",
+      context,
+      classNames = {},
+      additionalClassNames = {},
+    },
+    ref
+  ) => {
+    const { Button: styles } = useContext(context || GlobalStyles);
 
-  return (
-    <div className={containerClassName}>
-      {loadingActive && (
-        <span role="alert" style={tailwind('sr-only')}>
-          {loadingAlertText}
-        </span>
-      )}
+    const onClickHandler = (e) => {
+      if (!loading && !disabled) {
+        onClick(e);
+      }
+    };
 
-      <button
-        type={type}
-        onClick={(e) => onClickHandler(e)}
-        className={className}
-        disabled={disabled}
-        aria-label={ariaLabel}
-        aria-busy={loadingActive}
-        aria-disabled={disabled}
-        aria-live="polite"
-      >
-        <>
-          {loadingActive && <Spinner className={spinnerClassName} />}
-          {!loadingActive && children}
-        </>
-      </button>
-    </div>
-  );
-};
+    const loadingActive = loading && enableLoading;
+
+    const { containerClasses, buttonClasses, spinnerClasses } = selectClasses({
+      styles: styles?.[theme],
+      classNames,
+      additionalClassNames,
+      loading,
+      disabled,
+    });
+
+    return (
+      <div className={containerClasses}>
+        {loadingActive && (
+          <span role="alert" style={tailwind("sr-only")}>
+            {loadingAlertText}
+          </span>
+        )}
+
+        <button
+          ref={ref}
+          type={type}
+          onClick={(e) => onClickHandler(e)}
+          className={buttonClasses}
+          disabled={disabled}
+          aria-label={ariaLabel}
+          aria-busy={loadingActive}
+          aria-disabled={disabled}
+          aria-live="polite"
+        >
+          <>
+            {loadingActive && <Spinner className={spinnerClasses} />}
+            {!loadingActive && children}
+          </>
+        </button>
+      </div>
+    );
+  }
+);
