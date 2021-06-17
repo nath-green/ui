@@ -5,14 +5,10 @@ export const selectClasses = ({
   loading,
   disabled,
 }) => {
-  let containerClasses = styles?.container?.default;
   let buttonClasses = styles?.button?.default;
   let spinnerClasses = styles?.spinner?.default;
 
   if (loading) {
-    if (styles?.container?.loading) {
-      containerClasses = styles?.container?.loading;
-    }
     if (styles?.button?.loading) {
       buttonClasses = styles?.button?.loading;
     }
@@ -22,9 +18,6 @@ export const selectClasses = ({
   }
 
   if (disabled) {
-    if (styles?.container?.disabled) {
-      containerClasses = styles?.container?.disabled;
-    }
     if (styles?.button?.disabled) {
       buttonClasses = styles?.button?.disabled;
     }
@@ -34,35 +27,23 @@ export const selectClasses = ({
   }
 
   // ADDITIONAL CLASS NAMES
-  if (additionalClassNames?.container) {
-    containerClasses += " ";
-
-    if (!loading && !disabled && additionalClassNames?.container?.default) {
-      containerClasses += additionalClassNames?.container?.default;
-    }
-
-    if (loading && additionalClassNames?.container?.loading) {
-      containerClasses += additionalClassNames?.container?.loading;
-    }
-
-    if (disabled && additionalClassNames?.container?.disabled) {
-      containerClasses += additionalClassNames?.container?.disabled;
-    }
-  }
-
   if (additionalClassNames?.button) {
     buttonClasses += " ";
 
-    if (!loading && !disabled && additionalClassNames?.button?.default) {
-      buttonClasses += additionalClassNames?.button?.default;
-    }
-
-    if (loading && additionalClassNames?.button?.loading) {
-      buttonClasses += additionalClassNames?.button?.loading;
-    }
-
-    if (disabled && additionalClassNames?.button?.disabled) {
-      buttonClasses += additionalClassNames?.button?.disabled;
+    if (typeof additionalClassNames?.button === 'object' && additionalClassNames?.button !== null) {
+      if (!loading && !disabled && additionalClassNames?.button?.default) {
+        buttonClasses += additionalClassNames?.button?.default;
+      }
+  
+      if (loading && additionalClassNames?.button?.loading) {
+        buttonClasses += additionalClassNames?.button?.loading;
+      }
+  
+      if (disabled && additionalClassNames?.button?.disabled) {
+        buttonClasses += additionalClassNames?.button?.disabled;
+      }
+    } else {
+      buttonClasses += additionalClassNames?.button
     }
   }
 
@@ -83,44 +64,31 @@ export const selectClasses = ({
   }
 
   // OVERRIDES
-  if (classNames?.container) {
-    containerClasses = classNames?.container?.default;
+  if (classNames?.button) {
+    buttonClasses = classNames?.button?.default;
 
-    if (loading && classNames?.container?.loading) {
-      containerClasses = classNames?.container?.loading;
+    if (loading && classNames?.button?.loading) {
+      buttonClasses = classNames?.button?.loading;
     }
 
-    if (disabled && classNames?.container?.disabled) {
-      containerClasses = classNames?.container?.disabled;
-    }
-  }
-
-  if (classNames?.input) {
-    inputClasses = classNames?.input?.default;
-
-    if (loading && classNames?.input?.loading) {
-      inputClasses = classNames?.input?.loading;
-    }
-
-    if (disabled && classNames?.input?.disabled) {
-      inputClasses = classNames?.input?.disabled;
+    if (disabled && classNames?.button?.disabled) {
+      buttonClasses = classNames?.button?.disabled;
     }
   }
 
-  if (classNames?.label) {
-    labelClasses = classNames?.label?.default;
+  if (classNames?.spinner) {
+    spinnerClasses = classNames?.spinner?.default;
 
     if (loading && classNames?.label?.loading) {
-      labelClasses = classNames?.label?.loading;
+      spinnerClasses = classNames?.spinner?.loading;
     }
 
-    if (disabled && classNames?.label?.disabled) {
-      labelClasses = classNames?.label?.disabled;
+    if (disabled && classNames?.spinner?.disabled) {
+      spinnerClasses = classNames?.spinner?.disabled;
     }
   }
 
   return {
-    containerClasses,
     buttonClasses,
     spinnerClasses,
   };

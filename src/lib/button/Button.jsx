@@ -34,7 +34,7 @@ export const Button = forwardRef(
 
     const loadingActive = loading && enableLoading;
 
-    const { containerClasses, buttonClasses, spinnerClasses } = selectClasses({
+    const { buttonClasses, spinnerClasses } = selectClasses({
       styles: styles?.[theme],
       classNames,
       additionalClassNames,
@@ -43,7 +43,7 @@ export const Button = forwardRef(
     });
 
     return (
-      <div className={containerClasses}>
+      <>
         {loadingActive && (
           <span role="alert" style={tailwind("sr-only")}>
             {loadingAlertText}
@@ -66,7 +66,7 @@ export const Button = forwardRef(
             {!loadingActive && children}
           </>
         </button>
-      </div>
+      </>
     );
   }
 );
