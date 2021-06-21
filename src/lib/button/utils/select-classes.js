@@ -1,7 +1,7 @@
 export const selectClasses = ({
   styles,
-  classNames,
-  additionalClassNames,
+  className,
+  additionalClassName,
   loading,
   disabled,
 }) => {
@@ -27,65 +27,69 @@ export const selectClasses = ({
   }
 
   // ADDITIONAL CLASS NAMES
-  if (additionalClassNames?.button) {
-    buttonClasses += " ";
+  if (typeof additionalClassName === "object") {
+    if (additionalClassName?.button) {
+      buttonClasses += " ";
 
-    if (typeof additionalClassNames?.button === 'object' && additionalClassNames?.button !== null) {
-      if (!loading && !disabled && additionalClassNames?.button?.default) {
-        buttonClasses += additionalClassNames?.button?.default;
+      if (!loading && !disabled && additionalClassName?.button?.default) {
+        buttonClasses += additionalClassName?.button?.default;
       }
-  
-      if (loading && additionalClassNames?.button?.loading) {
-        buttonClasses += additionalClassNames?.button?.loading;
+
+      if (loading && additionalClassName?.button?.loading) {
+        buttonClasses += additionalClassName?.button?.loading;
       }
-  
-      if (disabled && additionalClassNames?.button?.disabled) {
-        buttonClasses += additionalClassNames?.button?.disabled;
+
+      if (disabled && additionalClassName?.button?.disabled) {
+        buttonClasses += additionalClassName?.button?.disabled;
       }
-    } else {
-      buttonClasses += additionalClassNames?.button
-    }
-  }
-
-  if (additionalClassNames?.spinner) {
-    spinnerClasses += " ";
-
-    if (!loading && !disabled && additionalClassNames?.spinner?.default) {
-      spinnerClasses += spinner?.default;
     }
 
-    if (loading && additionalClassNames?.spinner?.loading) {
-      spinnerClasses += additionalClassNames?.spinner?.loading;
-    }
+    if (additionalClassName?.spinner) {
+      spinnerClasses += " ";
 
-    if (disabled && additionalClassNames?.spinner?.disabled) {
-      spinnerClasses += spinner?.disabled;
+      if (!loading && !disabled && additionalClassName?.spinner?.default) {
+        spinnerClasses += spinner?.default;
+      }
+
+      if (loading && additionalClassName?.spinner?.loading) {
+        spinnerClasses += additionalClassName?.spinner?.loading;
+      }
+
+      if (disabled && additionalClassName?.spinner?.disabled) {
+        spinnerClasses += spinner?.disabled;
+      }
     }
+  } else {
+    buttonClasses += additionalClassName;
   }
 
   // OVERRIDES
-  if (classNames?.button) {
-    buttonClasses = classNames?.button?.default;
+  if (typeof className === "object") {
+    if (className?.button) {
+      buttonClasses = className?.button?.default;
 
-    if (loading && classNames?.button?.loading) {
-      buttonClasses = classNames?.button?.loading;
+      if (loading && className?.button?.loading) {
+        buttonClasses = className?.button?.loading;
+      }
+
+      if (disabled && className?.button?.disabled) {
+        buttonClasses = className?.button?.disabled;
+      }
     }
 
-    if (disabled && classNames?.button?.disabled) {
-      buttonClasses = classNames?.button?.disabled;
-    }
-  }
+    if (className?.spinner) {
+      spinnerClasses = className?.spinner?.default;
 
-  if (classNames?.spinner) {
-    spinnerClasses = classNames?.spinner?.default;
+      if (loading && className?.label?.loading) {
+        spinnerClasses = className?.spinner?.loading;
+      }
 
-    if (loading && classNames?.label?.loading) {
-      spinnerClasses = classNames?.spinner?.loading;
+      if (disabled && className?.spinner?.disabled) {
+        spinnerClasses = className?.spinner?.disabled;
+      }
     }
-
-    if (disabled && classNames?.spinner?.disabled) {
-      spinnerClasses = classNames?.spinner?.disabled;
-    }
+  } else {
+    buttonClasses = className;
   }
 
   return {
