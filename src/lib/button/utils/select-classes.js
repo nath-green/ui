@@ -60,7 +60,7 @@ export const selectClasses = ({
       }
     }
   } else {
-    buttonClasses += additionalClassName;
+    buttonClasses += ` ${additionalClassName}`;
   }
 
   // OVERRIDES
