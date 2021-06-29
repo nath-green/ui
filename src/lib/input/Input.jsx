@@ -17,8 +17,8 @@ export const Input = forwardRef(
       placeholder,
       onChange = () => {},
       context,
-      classNames = {},
-      additionalClassNames = {},
+      className = {},
+      overrideClassName = {},
       theme = "default",
     },
     ref
@@ -32,8 +32,8 @@ export const Input = forwardRef(
       errorTextClasses,
     } = selectClasses({
       styles: styles?.[theme],
-      classNames,
-      additionalClassNames,
+      className,
+      overrideClassName,
       hasError: Boolean(errorText),
     });
 

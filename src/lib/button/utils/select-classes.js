@@ -1,7 +1,7 @@
 export const selectClasses = ({
   styles,
   className,
-  additionalClassName,
+  overrideClassName,
   loading,
   disabled,
 }) => {
@@ -27,69 +27,69 @@ export const selectClasses = ({
   }
 
   // ADDITIONAL CLASS NAMES
-  if (typeof additionalClassName === "object") {
-    if (additionalClassName?.button) {
-      buttonClasses += " ";
-
-      if (!loading && !disabled && additionalClassName?.button?.default) {
-        buttonClasses += additionalClassName?.button?.default;
-      }
-
-      if (loading && additionalClassName?.button?.loading) {
-        buttonClasses += additionalClassName?.button?.loading;
-      }
-
-      if (disabled && additionalClassName?.button?.disabled) {
-        buttonClasses += additionalClassName?.button?.disabled;
-      }
-    }
-
-    if (additionalClassName?.spinner) {
-      spinnerClasses += " ";
-
-      if (!loading && !disabled && additionalClassName?.spinner?.default) {
-        spinnerClasses += spinner?.default;
-      }
-
-      if (loading && additionalClassName?.spinner?.loading) {
-        spinnerClasses += additionalClassName?.spinner?.loading;
-      }
-
-      if (disabled && additionalClassName?.spinner?.disabled) {
-        spinnerClasses += spinner?.disabled;
-      }
-    }
-  } else {
-    buttonClasses += ` ${additionalClassName}`;
-  }
-
-  // OVERRIDES
   if (typeof className === "object") {
     if (className?.button) {
-      buttonClasses = className?.button?.default;
+      buttonClasses += " ";
+
+      if (!loading && !disabled && className?.button?.default) {
+        buttonClasses += className?.button?.default;
+      }
 
       if (loading && className?.button?.loading) {
-        buttonClasses = className?.button?.loading;
+        buttonClasses += className?.button?.loading;
       }
 
       if (disabled && className?.button?.disabled) {
-        buttonClasses = className?.button?.disabled;
+        buttonClasses += className?.button?.disabled;
       }
     }
 
     if (className?.spinner) {
-      spinnerClasses = className?.spinner?.default;
+      spinnerClasses += " ";
 
-      if (loading && className?.label?.loading) {
-        spinnerClasses = className?.spinner?.loading;
+      if (!loading && !disabled && className?.spinner?.default) {
+        spinnerClasses += spinner?.default;
+      }
+
+      if (loading && className?.spinner?.loading) {
+        spinnerClasses += className?.spinner?.loading;
       }
 
       if (disabled && className?.spinner?.disabled) {
-        spinnerClasses = className?.spinner?.disabled;
+        spinnerClasses += spinner?.disabled;
       }
     }
   } else {
-    buttonClasses = className;
+    buttonClasses += ` ${className}`;
+  }
+
+  // OVERRIDES
+  if (typeof overrideClassName === "object") {
+    if (overrideClassName?.button) {
+      buttonClasses = overrideClassName?.button?.default;
+
+      if (loading && overrideClassName?.button?.loading) {
+        buttonClasses = overrideClassName?.button?.loading;
+      }
+
+      if (disabled && overrideClassName?.button?.disabled) {
+        buttonClasses = overrideClassName?.button?.disabled;
+      }
+    }
+
+    if (overrideClassName?.spinner) {
+      spinnerClasses = overrideClassName?.spinner?.default;
+
+      if (loading && overrideClassName?.label?.loading) {
+        spinnerClasses = overrideClassName?.spinner?.loading;
+      }
+
+      if (disabled && overrideClassName?.spinner?.disabled) {
+        spinnerClasses = overrideClassName?.spinner?.disabled;
+      }
+    }
+  } else {
+    buttonClasses = overrideClassName;
   }
 
   return {

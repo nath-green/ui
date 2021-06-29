@@ -19,8 +19,8 @@ export const Button = forwardRef(
       loadingAriaLabel = "Loading",
       theme = "default",
       context,
+      overrideClassName = {},
       className = {},
-      additionalClassName = {},
     },
     ref
   ) => {
@@ -37,7 +37,7 @@ export const Button = forwardRef(
     const { buttonClasses, spinnerClasses } = selectClasses({
       styles: styles?.[theme],
       className,
-      additionalClassName,
+      overrideClassName,
       loading,
       disabled,
     });

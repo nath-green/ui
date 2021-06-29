@@ -7,19 +7,19 @@ export const Pill = ({
   children,
   context,
   className,
-  additionalClassName,
+  overrideClassName,
   ariaLabel
 }) => {
   const { Pill: styles } = useContext(context || GlobalStyles);
 
   let classes = styles?.[theme];
 
-  if (additionalClassName) {
-    classes = `${classes} ${additionalClassName}`;
+  if (className) {
+    classes = `${classes} ${className}`;
   }
 
   return (
-    <span className={className || classes} aria-label={ariaLabel}>
+    <span className={overrideClassName || classes} aria-label={ariaLabel}>
       {children}
     </span>
   );

@@ -1,7 +1,7 @@
 export const selectClasses = ({
   styles,
-  classNames,
-  additionalClassNames,
+  className,
+  overrideClassName,
   hasError,
 }) => {
   let containerClasses = styles?.container?.default;
@@ -26,96 +26,104 @@ export const selectClasses = ({
   }
 
   // ADDITIONAL CLASS NAMES
-  if (additionalClassNames?.container) {
-    containerClasses += " ";
+  if (typeof className === "object") {
+    if (className?.container) {
+      containerClasses += " ";
 
-    if (!hasError && additionalClassNames?.container?.default) {
-      containerClasses += additionalClassNames?.container?.default;
+      if (!hasError && className?.container?.default) {
+        containerClasses += className?.container?.default;
+      }
+
+      if (hasError && className?.container?.error) {
+        containerClasses += className?.container?.error;
+      }
     }
 
-    if (hasError && additionalClassNames?.container?.error) {
-      containerClasses += additionalClassNames?.container?.error;
+    if (className?.input) {
+      inputClasses += " ";
+
+      if (!hasError && className?.input?.default) {
+        inputClasses += className?.input?.default;
+      }
+
+      if (hasError && className?.input?.error) {
+        inputClasses += className?.input?.error;
+      }
     }
+
+    if (className?.label) {
+      labelClasses += " ";
+
+      if (!hasError && className?.label?.default) {
+        labelClasses += className?.label?.default;
+      }
+
+      if (hasError && className?.label?.error) {
+        labelClasses += className?.label?.error;
+      }
+    }
+
+    if (className?.helperText) {
+      helperTextClasses += " ";
+
+      if (!hasError && className?.helperText?.default) {
+        helperTextClasses += className?.helperText?.default;
+      }
+
+      if (hasError && className?.helperText?.error) {
+        helperTextClasses += className?.helperText?.error;
+      }
+    }
+  } else {
+    inputClasses += ` ${className}`;
   }
 
-  if (additionalClassNames?.input) {
-    inputClasses += " ";
-
-    if (!hasError && additionalClassNames?.input?.default) {
-      inputClasses += additionalClassNames?.input?.default;
+  if (typeof overrideClassName === "object") {
+    // doesn't need error state as only shown when errorText
+    if (className?.errorText) {
+      errorTextClasses += " ";
+      errorTextClasses += errorTextClasses?.default;
     }
 
-    if (hasError && additionalClassNames?.input?.error) {
-      inputClasses += additionalClassNames?.input?.error;
-    }
-  }
+    // OVERRIDES
+    if (overrideClassName?.container) {
+      containerClasses = overrideClassName?.container?.default;
 
-  if (additionalClassNames?.label) {
-    labelClasses += " ";
-
-    if (!hasError && additionalClassNames?.label?.default) {
-      labelClasses += additionalClassNames?.label?.default;
+      if (hasError && overrideClassName?.container?.error) {
+        containerClasses = overrideClassName?.container?.error;
+      }
     }
 
-    if (hasError && additionalClassNames?.label?.error) {
-      labelClasses += additionalClassNames?.label?.error;
-    }
-  }
+    if (overrideClassName?.input) {
+      inputClasses = overrideClassName?.input?.default;
 
-  if (additionalClassNames?.helperText) {
-    helperTextClasses += " ";
-
-    if (!hasError && additionalClassNames?.helperText?.default) {
-      helperTextClasses += additionalClassNames?.helperText?.default;
+      if (hasError && overrideClassName?.input?.error) {
+        inputClasses = overrideClassName?.input?.error;
+      }
     }
 
-    if (hasError && additionalClassNames?.helperText?.error) {
-      helperTextClasses += additionalClassNames?.helperText?.error;
+    if (overrideClassName?.label) {
+      labelClasses = overrideClassName?.label?.default;
+
+      if (hasError && overrideClassName?.label?.error) {
+        labelClasses = overrideClassName?.label?.error;
+      }
     }
-  }
 
-  // doesn't need error state as only shown when errorText
-  if (additionalClassNames?.errorText) {
-    errorTextClasses += " ";
-    errorTextClasses += errorTextClasses?.default;
-  }
+    if (overrideClassName?.helperText) {
+      helperTextClasses = overrideClassName?.helperText?.default;
 
-  // OVERRIDES
-  if (classNames?.container) {
-    containerClasses = classNames?.container?.default;
-
-    if (hasError && classNames?.container?.error) {
-      containerClasses = classNames?.container?.error;
+      if (hasError && overrideClassName?.helperText?.error) {
+        helperTextClasses = overrideClassName?.helperText?.error;
+      }
     }
-  }
 
-  if (classNames?.input) {
-    inputClasses = classNames?.input?.default;
-
-    if (hasError && classNames?.input?.error) {
-      inputClasses = classNames?.input?.error;
+    // doesn't need error state as only shown when errorText
+    if (overrideClassName?.errorText) {
+      errorTextClasses = overrideClassName?.errorText?.default;
     }
-  }
-
-  if (classNames?.label) {
-    labelClasses = classNames?.label?.default;
-
-    if (hasError && classNames?.label?.error) {
-      labelClasses = classNames?.label?.error;
-    }
-  }
-
-  if (classNames?.helperText) {
-    helperTextClasses = classNames?.helperText?.default;
-
-    if (hasError && classNames?.helperText?.error) {
-      helperTextClasses = classNames?.helperText?.error;
-    }
-  }
-
-  // doesn't need error state as only shown when errorText
-  if (classNames?.errorText) {
-    errorTextClasses = classNames?.errorText?.default;
+  } else {
+    inputClasses = overrideClassName;
   }
 
   return {

@@ -7,20 +7,20 @@ export const Spinner = ({
   theme = "default",
   context,
   className,
-  additionalClassName,
+  overrideClassName,
 }) => {
   const { Spinner: styles } = useContext(context || GlobalStyles);
 
   let classes = styles?.[theme];
 
-  if (additionalClassName) {
-    classes = `${classes} ${additionalClassName}`;
+  if (className) {
+    classes = `${classes} ${className}`;
   }
 
   return (
     <svg
       style={tailwind("animate-spin")}
-      className={className || classes}
+      className={overrideClassName || classes}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
